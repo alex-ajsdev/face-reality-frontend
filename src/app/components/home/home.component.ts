@@ -1,4 +1,4 @@
-import { Component, Renderer2, ViewChild, ElementRef } from '@angular/core';
+import { Component } from '@angular/core';
 import { Selection } from 'src/app/interfaces/selection.model';
 
 @Component({
@@ -17,5 +17,9 @@ export class HomeComponent {
     this.totalFake = selection.totalFake;
     this.totalRealFound = selection.totalRealFound;
     this.showMessage = true;
+  }
+
+  refresh(){
+    window.location.reload();
   }
 }

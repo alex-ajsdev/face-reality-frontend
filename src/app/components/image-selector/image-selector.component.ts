@@ -15,7 +15,7 @@ export class ImageSelectorComponent implements OnInit {
   images: Image[] = [];
   selectedImages: Image[] = [];
   fakeImages: Image[] = [];
-  baseUrl = 'http://www.ajsdev.net/api/';
+  baseUrl = 'http://www.ajsdev.net/face-reality/api/';
 
   constructor(
     private imageService: ImageService,
