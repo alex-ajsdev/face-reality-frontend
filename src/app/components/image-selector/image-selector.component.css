@@ -1,0 +1,48 @@
+.grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 10px;
+}
+
+.image-container {
+  border: 1px solid #ddd;
+  padding: 10px;
+  margin-top: 10px;
+  cursor: pointer;
+  transition: border-color 0.3s;
+}
+
+.image-container.selected {
+  border-color: #00bcd4;
+  background-color: #00bcd4;
+}
+
+.image-container.fake {
+  border-color: #ff5252;
+  background-color: #ff5252;
+}
+
+.image-container.fake.selected {
+  border-color: #4caf50;
+  background-color: #4caf50;
+}
+
+button {
+  margin: 10px 0;
+  padding: 10px;
+  width: 100%;
+  background-color: #333;
+  color: white;
+  border: none;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+button:hover {
+  background-color: #555;
+}
+
+img {
+  max-width: 100%;
+  display: block;
+}
