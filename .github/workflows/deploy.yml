@@ -1,0 +1,81 @@
+name: Deploy to VPS
+
+on:
+  push:
+    branches:
+      - master
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v2
+
+    - name: Deploy to VPS
+      env:
+        DEPLOY_SSH_KEY: ${{ secrets.DEPLOY_SSH_KEY }}
+        SERVER_IP: 103.241.64.253
+        SERVER_USER: root
+        APP_DIR: /var/www/face-reality/
+      run: |
+        # Install rsync
+        sudo apt-get -y install rsync
+
+        # Write the SSH key to a file
+        echo "$DEPLOY_SSH_KEY" > deploy_key
+        chmod 600 deploy_key
+
+        # Use rsync to deploy the application
+        rsync -avz --delete -e 'ssh -i deploy_key -o StrictHostKeyChecking=no' dist/frontend/ $SERVER_USER@$SERVER_IP:$APP_DIR
+
+        # Clean up the SSH key
+        rm -f deploy_key
+name: Deploy to VPS
+
+on:
+  push:
+    branches:
+      - master  # Trigger on pushes to the master branch
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v2
+
+    - name: Setup Node.js
+      uses: actions/setup-node@v2
+      with:
+        node-version: '14'  # or your desired version
+
+    - name: Install dependencies
+      run: |
+        npm ci
+
+    - name: Build the Angular app
+      run: |
+        npm run build
+
+    - name: Deploy to VPS
+      env:
+        DEPLOY_SSH_KEY: ${{ secrets.DEPLOY_SSH_KEY }}
+        SERVER_IP: 103.241.64.253
+        SERVER_USER: root
+        APP_DIR: /var/www/face-reality/
+      run: |
+        # Install rsync
+        sudo apt-get -y install rsync
+
+        # Write the SSH key to a file
+        echo "$DEPLOY_SSH_KEY" > deploy_key
+        chmod 600 deploy_key
+
+        # Use rsync to deploy the application
+        rsync -avz --delete -e 'ssh -i deploy_key -o StrictHostKeyChecking=no' dist/frontend/ $SERVER_USER@$SERVER_IP:$APP_DIR
+
+        # Clean up the SSH key
+        rm -f deploy_key
