@@ -11,7 +11,10 @@ script:
 - ng lint
 - ng build --configuration production
 deploy:
-  provider: heroku
-  api_key:
-    secure: Os1ajfrYRbtYHEPx51Mw0TvTS9Dkqf59UBCy2czyAgtnA2q9BHr7s/Ab9Fx0sdx9MiST95/K8qu1k6rT1AN1KA2tLfRMpqbLAPTApR0nyMky6w8v2eJHvJi7XLIq/SutxoS6gmgVnhc4Uuc4O/htjmVZflWm66GXUzovgNNj0kuH6kV3ANSY/Zd2pqRUxUyjsoE4wteEo7XHFRyMiEyTiKTAdsAZutbs6y48+3hFJIuBHcFnNb/TKOi4NBgsPY399Q05fR2k7sq9TJcxFNuHn65dH5vmr9Wdjy9sUn9nQyOY3z5jRk6kaUzWCFXM4r2NSDt7tAf1V9/R5zKNMufcx6AjktjxPwYXol3HFf0chlSZUyoTb6JqC9LmH6WgVmt81Dl/Dk83Qs00ZHaZBiVWwQxJXT801spzAujwBup4sdNaLZIPryqGA82GQTYTJF1xgKUaFVYMtwfBgW+OhO2PjxHgEHpfM5Elahdili3o9xulCo10Zg/vM3z7y+qY1PF/OthbzfqUiELUZA2UG8Pg2PBxHU6N107twH4CR5ATTfMWMDYgKbL1Qehubo1t7cNvYLLIijhWPwE9iGqcYBMKMhizIU9hvS1QzpsQjUVwDSxZNgvtDsXYZphdN2tK2IHYI4QY/AhlKu7qPv6AgAQ4Q2GEUBwGiLeJliPqDeN4bW4=
-  app: face-reality
+  provider: script
+  script: bash deploy.sh
+  on:
+    branch: master
+before_install:
+- openssl aes-256-cbc -K $encrypted_db2095f63ba3_key -iv $encrypted_db2095f63ba3_iv
+  -in deploy_rsa.enc -out deploy_rsa -d
