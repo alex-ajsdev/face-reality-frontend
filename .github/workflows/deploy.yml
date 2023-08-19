@@ -24,7 +24,7 @@ jobs:
 
     - name: Build the Angular app
       run: |
-        npm run build
+        npm run build --base-href /face-reality/
 
     - name: Deploy to VPS
       env:
