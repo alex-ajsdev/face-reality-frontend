@@ -2,6 +2,8 @@ dist: focal
 language: node_js
 node_js:
 - '18'
+addons:
+  ssh_known_hosts: "<HOST>"
 cache:
   directories:
   - node_modules
@@ -10,11 +12,22 @@ install:
 script:
 - ng lint
 - ng build --configuration production
+env:
+  global:
+  - DEPLOY_USER=<USER>
+  - DEPLOY_HOST=<HOST>
+  - DEPLOY_DIRECTORY=<DIR>
+before_deploy:
+- eval "$(ssh-agent -s)"
+- chmod 600 /tmp/deploy_rsa
+- ssh-add /tmp/deploy_rsa
 deploy:
   provider: script
-  script: bash deploy.sh
-  on:
-    branch: master
+  skip_cleanup: true
+  script: rsync -r --delete-after --quiet -e"ssh -v -i /tmp/deploy_rsa" $TRAVIS_BUILD_DIR/dist/
+    <USER>@<HOST>:<DIR>
+true:
+  branch: master
 before_install:
 - openssl aes-256-cbc -K $encrypted_db2095f63ba3_key -iv $encrypted_db2095f63ba3_iv
   -in deploy_rsa.enc -out deploy_rsa -d
