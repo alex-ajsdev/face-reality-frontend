@@ -15,7 +15,7 @@ export class HomeComponent {
 
   submitEvent(selection: Selection) {
     if (!this.postsubmit) return;
-    const message = `You found ${selection.totalFakeFound}/${selection.totalFake} AI generated images, and falsely identified ${selection.totalRealFound} image(s) of real people. Click <a href="/">here</a> to play again, or click <a href="/statistics">here</a> to view everyone's statistics.`;
+    const message = `You found ${selection.totalFakeFound}/${selection.totalFake} AI generated images, and falsely identified ${selection.totalRealFound} image(s) of real people. Click <a href="#/">here</a> to play again, or click <a href="#/statistics">here</a> to view everyone's statistics.`;
     this.renderer.setProperty(
       this.postsubmit.nativeElement,
       'innerHTML',
