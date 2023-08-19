@@ -7,7 +7,7 @@ import { Selection } from '../interfaces/selection.model';
   providedIn: 'root',
 })
 export class SelectionService {
-  private apiUrl = 'http://localhost:3000/selections';
+  private apiUrl = 'http://www.ajsdev.net/face-reality/api/selections';
 
   constructor(private http: HttpClient) {}
 
