@@ -7,7 +7,7 @@ import { Image } from 'src/app/interfaces/image.model';
   providedIn: 'root',
 })
 export class ImageService {
-  private apiUrl = 'http://localhost:3000/images/';
+  private apiUrl = 'http://www.ajsdev.net/api/images/';
 
   constructor(private http: HttpClient) {}
 
