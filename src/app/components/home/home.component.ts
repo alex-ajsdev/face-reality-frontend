@@ -7,24 +7,15 @@ import { Selection } from 'src/app/interfaces/selection.model';
   styleUrls: ['./home.component.css'],
 })
 export class HomeComponent {
-  @ViewChild('postsubmit', { static: false }) postsubmit:
-    | ElementRef
-    | undefined;
-
-  constructor(private renderer: Renderer2) {}
+  showMessage = false;
+  totalFakeFound = 0;
+  totalFake = 0;
+  totalRealFound = 0;
 
   submitEvent(selection: Selection) {
-    if (!this.postsubmit) return;
-    const message = `You found ${selection.totalFakeFound}/${selection.totalFake} AI generated images, and falsely identified ${selection.totalRealFound} image(s) of real people. Click <a routerLink="/">here</a> to play again, or click <a routerLink="/statistics">here</a> to view everyone's statistics.`;
-    this.renderer.setProperty(
-      this.postsubmit.nativeElement,
-      'innerHTML',
-      message
-    );
-    this.renderer.setStyle(
-      this.postsubmit.nativeElement,
-      'visibility',
-      'visible'
-    );
+    this.totalFakeFound = selection.totalFakeFound;
+    this.totalFake = selection.totalFake;
+    this.totalRealFound = selection.totalRealFound;
+    this.showMessage = true;
   }
 }

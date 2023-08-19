@@ -26,5 +26,10 @@
         algorithm="progan"></app-image-selector>
     </mat-tab>
   </mat-tab-group>
-  <p class="instruction" id="postsubmit" #postsubmit></p>
+  <div class="instruction" *ngIf="showMessage">
+    You found {{totalFakeFound}}/{{totalFake}} AI generated images, 
+    and falsely identified {{totalRealFound}} image(s) of real people. 
+    Click <a routerLink="/">here</a> to play again, 
+    or click <a routerLink="/statistics">here</a> to view everyone's statistics.
+  </div>
 </div>
