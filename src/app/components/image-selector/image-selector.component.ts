@@ -15,7 +15,7 @@ export class ImageSelectorComponent implements OnInit {
   images: Image[] = [];
   selectedImages: Image[] = [];
   fakeImages: Image[] = [];
-  baseUrl = 'http://localhost:3000/';
+  baseUrl = 'http://www.ajsdev.net/api/';
 
   constructor(
     private imageService: ImageService,
