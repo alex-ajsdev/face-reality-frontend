@@ -6,7 +6,7 @@
     "start": "node server.js",
     "build": "ng build --configuration production --base-href /face-reality/",
     "watch": "ng build --watch --configuration development",
-    "test": "ng test",
+    "test": "ng test --browsers ChromeHeadlessCI --watch=false",
     "lint": "ng lint"
   },
   "engines": {
