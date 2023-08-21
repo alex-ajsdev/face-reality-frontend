@@ -18,4 +18,13 @@ describe('HeaderComponent', () => {
   it('should create', () => {
     expect(component).toBeTruthy();
   });
+
+  it('should render the header element', () => {
+    const compiled = fixture.nativeElement;
+    const headerElem = compiled.querySelector('.header');
+    expect(headerElem).toBeTruthy();
+  });
 });
+
+
+ 

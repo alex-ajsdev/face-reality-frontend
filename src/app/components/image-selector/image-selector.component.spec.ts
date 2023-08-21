@@ -1,5 +1,6 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { ImageSelectorComponent } from './image-selector.component';
+import {  HttpClientModule } from '@angular/common/http';
 
 describe('ImageSelectorComponent', () => {
   let component: ImageSelectorComponent;
@@ -7,6 +8,7 @@ describe('ImageSelectorComponent', () => {
 
   beforeEach(() => {
     TestBed.configureTestingModule({
+      imports: [HttpClientModule],
       declarations: [ImageSelectorComponent],
     });
     fixture = TestBed.createComponent(ImageSelectorComponent);
@@ -17,4 +19,12 @@ describe('ImageSelectorComponent', () => {
   it('should create', () => {
     expect(component).toBeTruthy();
   });
+
+  it('should render the .grid element', () => {
+    const compiled = fixture.nativeElement;
+    const elem = compiled.querySelector('.grid');
+    expect(elem).toBeTruthy();
+  });
 });
+
+
